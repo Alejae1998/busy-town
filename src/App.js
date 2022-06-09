@@ -10,9 +10,31 @@ function App() {
   // lizardSize should be a number that starts out as 10
   const [lizardSize, setLizardSize] = useState(10);
   // lightColor should be a string that starts out as 'red'
- 
+  const [lightColor, setLightColor] = useState('red', 'yellow', 'green');
+  // const colors = ['red', 'yellow', 'green' ];
   // traffic is complicated. It should be an array of strings that starts out as ['car', 'truck']
+  const [vehicles, setVehicles] = useState(['car', 'bus', 'truck', 'motorcycle']);
 
+  function handleCarClick() {
+    vehicles.push('car');
+    const copy = vehicles.slice();
+    setVehicles(copy);
+  }
+  function handleBusClick() {
+    vehicles.push('bus');
+    const copy = vehicles.slice();
+    setVehicles(copy);
+  }
+  function handleTruckClick() {
+    vehicles.push('truck');
+    const copy = vehicles.slice();
+    setVehicles(copy);
+  }
+  function handleMotorcycleClick() {
+    vehicles.push('motorcycle');
+    const copy = vehicles.slice();
+    setVehicles(copy);
+  }
   return (
     <div className="App">
       <div className="fight">
@@ -49,32 +71,31 @@ function App() {
       <TrafficLight color={lightColor} />
       <div className="buttons">
         {/* when you click this button, the color of the light in state should be set to 'red' */}
-        <button>Red</button>
+        <button onClick={() => setLightColor('red')}>Red</button>
         {/* when you click this button, the color of the light in state should be set to 'yellow' */}
-        <button>Yellow</button>
+        <button onClick={() => setLightColor('yellow')}>Yellow</button>
         {/* when you click this button, the color of the light in state should be set to 'green' */}
-        <button>Green</button>
+        <button onClick={() => setLightColor('green')}>Green</button>
       </div>
       {/* 
       the VehicleList component takes in one prop: vehicles.
       This prop should be an array of strings like ['car', 'truck', 'truck', 'car', 'bus'].
       Do you have something like that in state that you could pass as a vehicles prop? 
       */}
-      <VehicleList />
+      <VehicleList vehicles={vehicles}/>
       <div className="buttons">
         {/* This part is weird */}
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'car' to the end */}
-        <button onClick={}>Car</button>
+        <button onClick={handleCarClick}>Car</button>
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'bus' to the end */}
-        <button>Bus</button>
+        <button onClick={handleBusClick}>Bus</button>
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'truck' to the end */}
-        <button>Truck</button>
+        <button onClick={handleTruckClick}>Truck</button>
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'motorcycle' to the end */}
-        <button>Motorcycle</button>
+        <button onClick={handleMotorcycleClick}>Motorcycle</button>
       </div>
     </div>
   );
 }
 
 export default App;
-
